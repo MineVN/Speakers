@@ -1,0 +1,9 @@
+server-name: 'TomorrowLand'
+color: '§b'
+
+global-speaker:
+  name: "&e&lLoa thế giới"
+  lore:
+    - "&a&oDùng để chat toàn server"
+  model: 0
+  type: "PAPER"

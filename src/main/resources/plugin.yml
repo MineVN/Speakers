@@ -1,0 +1,12 @@
+name: Speaker
+version: ${project.version}
+main: tranlong5252.loatml.Speaker
+api-version: 1.16
+authors: [ tranlong5252 ]
+commands:
+  loa:
+    description: Chat toàn server
+  getloa:
+    description: Lấy loa
+  loareload:
+    description: Reload
