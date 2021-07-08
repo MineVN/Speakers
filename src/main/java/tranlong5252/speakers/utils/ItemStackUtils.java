@@ -1,4 +1,4 @@
-package tranlong5252.loatml.utils;
+package tranlong5252.speakers.utils;
 
 import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;

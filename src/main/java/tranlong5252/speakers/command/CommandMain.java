@@ -1,4 +1,4 @@
-package tranlong5252.loatml.command;
+package tranlong5252.speakers.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.jetbrains.annotations.NotNull;
-import tranlong5252.loatml.Speaker;
-import tranlong5252.loatml.config.Config;
+import tranlong5252.speakers.Speaker;
+import tranlong5252.speakers.config.Config;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

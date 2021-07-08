@@ -1,9 +1,9 @@
-package tranlong5252.loatml;
+package tranlong5252.speakers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import tranlong5252.loatml.command.CommandMain;
-import tranlong5252.loatml.config.Config;
+import tranlong5252.speakers.command.CommandMain;
+import tranlong5252.speakers.config.Config;
 
 import java.util.Objects;
 
@@ -42,6 +42,6 @@ public final class Speaker extends JavaPlugin {
         CommandMain cmd = new CommandMain();
         Objects.requireNonNull(this.getCommand("loa")).setExecutor(cmd);
         Objects.requireNonNull(this.getCommand("getloa")).setExecutor(cmd);
-        Objects.requireNonNull(this.getCommand("loareload")).setExecutor(cmd);
+        Objects.requireNonNull(this.getCommand("loareload")).setExecutor(cmd); //TODO doesn't work, fix later
     }
 }

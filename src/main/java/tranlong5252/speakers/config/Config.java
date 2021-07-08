@@ -1,10 +1,10 @@
-package tranlong5252.loatml.config;
+package tranlong5252.speakers.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import tranlong5252.loatml.utils.ItemStackUtils;
+import tranlong5252.speakers.utils.ItemStackUtils;
 
 import java.io.File;
 import java.util.Objects;
