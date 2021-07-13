@@ -65,8 +65,16 @@ public class CommandMain implements CommandExecutor {
                 sender.sendMessage("§cBạn không thể sử dụng lệnh này");
                 return false;
             }
+            if (args.length != 1) {
+                sender.sendMessage("§cSử dụng sai cú pháp: /getloa <số lượng>");
+                return false;
+            }
+            String amoStr= args[0];
+            int amount = Integer.parseInt(amoStr);
             Player player = (Player) sender;
-            player.getInventory().addItem(Config.getGlobalSpeaker());
+            ItemStack speaker = Config.getGlobalSpeaker();
+            speaker.setAmount(amount);
+            player.getInventory().addItem(speaker);
             sender.sendMessage("§aĐã thêm loa vào túi của bạn");
         }
         return false;
