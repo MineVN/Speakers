@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
-import org.jetbrains.annotations.NotNull;
 import tranlong5252.speakers.Speaker;
 import tranlong5252.speakers.config.Config;
 
@@ -20,7 +19,7 @@ public class CommandMain implements CommandExecutor {
     String finalPrefix = "§6§l❖ " + Config.getColor() + "§l[" + Config.getServerName() + Config.getColor() + "§l]";
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         if (cmd.getName().equalsIgnoreCase("loa")) {
             if (!(sender instanceof Player)) {
                 sender.sendMessage("§cBạn không thể sử dụng lệnh này");

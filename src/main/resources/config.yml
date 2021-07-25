@@ -5,5 +5,9 @@ global-speaker:
   name: "&e&lLoa thế giới"
   lore:
     - "&a&oDùng để chat toàn server"
-  model: 0
   type: "PAPER"
+#  durability: 0
+#  enchant:
+#   - DURABILITY:1
+#   - KNOCKBACK:3
+#  flag:

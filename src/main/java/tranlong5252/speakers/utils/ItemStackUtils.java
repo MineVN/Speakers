@@ -24,10 +24,10 @@ import java.util.Map;
 
 public class ItemStackUtils {
 
-    public static ItemStack create(Material m, int model) {
+    public static ItemStack create(Material m, short dur) {
         ItemStack is = new ItemStack(m);
         ItemMeta meta = is.getItemMeta();
-        meta.setCustomModelData(model);
+        is.setDurability(dur);
         is.setItemMeta(meta);
         return is;
     }
@@ -207,12 +207,12 @@ public class ItemStackUtils {
             for (int i = 0; i < config.getStringList(".enchant").size(); i++) {
                 String s = config.getStringList(".enchant").get(i);
                 String eString = s.substring(0, s.indexOf(":"));
-                Enchantment enchant = Enchantment.getByKey(NamespacedKey.minecraft(eString));
+                Enchantment enchant = Enchantment.getByName(eString);
                 int level = Integer.parseInt(s.substring(s.indexOf(":") + 1));
                 e.put(enchant, level);
             }
             item.addEnchantments(e);
-            //for (Enchantment en : e.keySet()) meta.addEnchant(en, e.get(en), true);
+            for (Enchantment en : e.keySet()) meta.addEnchant(en, e.get(en), true);
         }
         if (config.contains("flag")) {
             config.getStringList("flag").forEach(s -> meta.addItemFlags(ItemFlag.valueOf(s)));
@@ -220,8 +220,8 @@ public class ItemStackUtils {
 
         meta.setLore(lore);
 
-        int data = config.getInt(".model");
-        meta.setCustomModelData(data);
+        int data = config.getInt(".durability");
+        item.setDurability((short) data);
         item.setItemMeta(meta);
 
         return item;

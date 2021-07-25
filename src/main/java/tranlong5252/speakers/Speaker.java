@@ -42,6 +42,6 @@ public final class Speaker extends JavaPlugin {
         CommandMain cmd = new CommandMain();
         Objects.requireNonNull(this.getCommand("loa")).setExecutor(cmd);
         Objects.requireNonNull(this.getCommand("getloa")).setExecutor(cmd);
-        Objects.requireNonNull(this.getCommand("loareload")).setExecutor(cmd); //TODO doesn't work, fix later
+        //Objects.requireNonNull(this.getCommand("loareload")).setExecutor(cmd); TODO doesn't work, fix later
     }
 }
