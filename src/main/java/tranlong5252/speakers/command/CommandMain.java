@@ -10,6 +10,8 @@ import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.jetbrains.annotations.NotNull;
 import tranlong5252.speakers.Speaker;
 import tranlong5252.speakers.config.Config;
+import tranlong5252.speakers.utils.DelayObj;
+import tranlong5252.speakers.utils.DelayUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -21,11 +23,11 @@ public class CommandMain implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§cBạn không thể sử dụng lệnh này");
+            return false;
+        }
         if (cmd.getName().equalsIgnoreCase("loa")) {
-            if (!(sender instanceof Player)) {
-                sender.sendMessage("§cBạn không thể sử dụng lệnh này");
-                return false;
-            }
             if (args.length <= 0) {
                 sender.sendMessage("§7/loa <tin nhắn>");
                 return false;
@@ -34,17 +36,21 @@ public class CommandMain implements CommandExecutor {
             for (ItemStack is : player.getInventory().getContents()) {
                 if (is == null) continue;
                 if (Config.isGlobalSpeaker(is)) {
+                    if (!player.hasPermission("speaker.cooldown")) {
+                        DelayObj delay = new DelayObj(player.getUniqueId(), "delay");
+                        if (DelayUtils.isDelay(delay,Config.getCooldownTime()*1000,true,player)) return false;
+                    }
                     is.setAmount(is.getAmount() - 1);
                     player.updateInventory();
                     StringBuilder message = new StringBuilder();
                     for (String arg : args) {
                         message.append(arg).append(" ");
                     }
-                    message = new StringBuilder(ChatColor.stripColor(message.toString()));
+                    message = new StringBuilder(ChatColor.stripColor(message.toString()).replace(';',' '));
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     DataOutputStream out = new DataOutputStream(stream);
                     String prefix = "§f ;" + finalPrefix + "§f§l " + player.getName() + " §7§l> §e";
-                    String suffix = ";§f";
+                    String suffix = "; §f";
                     String action = "fsbc";
                     String data2 = "";
                     try {
@@ -61,7 +67,7 @@ public class CommandMain implements CommandExecutor {
             sender.sendMessage("§cBạn phải có loa trong túi đồ");
         }
         if (cmd.getName().equalsIgnoreCase("getloa")) {
-            if (!sender.hasPermission("loa.admin") || !(sender instanceof Player)) {
+            if (!sender.hasPermission("speaker.getspeaker")) {
                 sender.sendMessage("§cBạn không thể sử dụng lệnh này");
                 return false;
             }

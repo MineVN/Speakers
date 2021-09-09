@@ -1,5 +1,6 @@
 package tranlong5252.speakers.config;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -7,19 +8,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tranlong5252.speakers.utils.ItemStackUtils;
 
 import java.io.File;
-import java.util.Objects;
 
 public class Config {
 
     private static ItemStack GLOBAL_SPEAKER;
     private static String SERVER_NAME;
     private static String COLOR;
+    private static long cooldownTime;
 
     public static void reload(JavaPlugin plugin) {
         FileConfiguration config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "config.yml"));
-        GLOBAL_SPEAKER = ItemStackUtils.buildItem(Objects.requireNonNull(config.getConfigurationSection("global-speaker")));
+        ConfigurationSection item = config.getConfigurationSection("global-speaker");
+        if (item!=null) GLOBAL_SPEAKER = ItemStackUtils.buildItem(item);
         SERVER_NAME = config.getString("server-name");
         COLOR = config.getString("color");
+        cooldownTime = config.getLong("cooldown-time",5);
     }
 
     public static ItemStack getGlobalSpeaker() {
@@ -36,5 +39,9 @@ public class Config {
 
     public static String getColor() {
         return COLOR.toLowerCase();
+    }
+
+    public static long getCooldownTime() {
+        return cooldownTime;
     }
 }
