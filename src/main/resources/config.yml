@@ -1,5 +1,6 @@
 server-name: 'TomorrowLand'
 color: '§b'
+cooldown-time: 10
 
 global-speaker:
   name: "&e&lLoa thế giới"
