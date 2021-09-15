@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tranlong5252.speakers.command.CommandMain;
 import tranlong5252.speakers.config.Config;
 
+import java.io.File;
 import java.util.Objects;
 
 public final class Speaker extends JavaPlugin {
@@ -15,22 +16,20 @@ public final class Speaker extends JavaPlugin {
         return plugin;
     }
 
+    public File getFile(String name) {
+        return new File(this.getDataFolder(), name + ".yml");
+    }
+
     @Override
     public void onEnable() {
         plugin = this;
-        this.reloadConfig();
+        Config.reload(plugin);
         registerCommands();
         registerChannels();
     }
 
     @Override
     public void onDisable() {
-    }
-
-    @Override
-    public void reloadConfig() {
-        this.saveDefaultConfig();
-        Config.reload(this);
     }
 
     private void registerChannels() {
@@ -41,5 +40,6 @@ public final class Speaker extends JavaPlugin {
         CommandMain cmd = new CommandMain();
         Objects.requireNonNull(this.getCommand("loa")).setExecutor(cmd);
         Objects.requireNonNull(this.getCommand("getloa")).setExecutor(cmd);
+        Objects.requireNonNull(this.getCommand("loareload")).setExecutor(cmd); //TODO doesn't work, fix later
     }
 }

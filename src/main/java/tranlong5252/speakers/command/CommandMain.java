@@ -19,10 +19,9 @@ import java.io.IOException;
 
 public class CommandMain implements CommandExecutor {
 
-    String finalPrefix = "§6§l❖ " + Config.getColor() + "§l[" + Config.getServerName() + Config.getColor() + "§l]";
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
+        String finalPrefix = "§6§l❖ " + Config.getColor() + "§l[" + Config.getServerName() + Config.getColor() + "§l]";
         if (!(sender instanceof Player)) {
             sender.sendMessage("§cBạn không thể sử dụng lệnh này");
             return false;
@@ -82,6 +81,13 @@ public class CommandMain implements CommandExecutor {
             speaker.setAmount(amount);
             player.getInventory().addItem(speaker);
             sender.sendMessage("§aĐã thêm loa vào túi của bạn");
+        }
+        if (cmd.getName().equalsIgnoreCase("loareload")) {
+            if (sender.hasPermission("speaker.reload")) {
+                Speaker speaker = Speaker.get();
+                Config.reload(speaker);
+                sender.sendMessage("done");
+            }
         }
         return false;
     }

@@ -11,6 +11,6 @@ commands:
     permission: speaker.getspeaker
   ignoreloa:
     permission: speaker.ignore
-#  loareload:
-#    description: Reload
-#    permission: speaker.reload
+  loareload:
+    description: Reload
+    permission: speaker.reload
